@@ -18,19 +18,42 @@ Aggiungere una select accanto al bottone di generazione, che fornisca una scelta
 - con difficoltà 2 => 81 caselle, con un numero compreso tra 1 e 81, divise in 9 caselle per 9 righe;
 - con difficoltà 3 => 49 caselle, con un numero compreso tra 1 e 49, divise in 7 caselle per 7 righe;*/
 
-// recupero elemento griglia
-const grid = document.getElementById('grid');
-
 // impostazioni iniziali
 
 const rows = 10;
 const cells = 10;
 const totalCells = rows * cells;
 
-//per 100 volte
-
-for (let i=1; i<=totalCells; i++) {
+//funzioni
+function createCell(cellNumber){
     const cell = document.createElement('div');
-    cell.className='cell'
-    grid.appendChild(cell);
+    cell.className = 'cell';
+    cell.innerText = cellNumber;
+
+    return cell;
 }
+
+//prendo il bottone dal DOM
+const playButton = document.getElementById ('start');
+
+function play() {
+    //trasformo il 'start' in 'ricomincia'
+    this.innerText = 'Ricomincia'
+    //recupero la griglia
+    const grid = document.getElementById('grid');
+
+    for (let i=1; i<=totalCells; i++) {
+        const cell = createCell(i);
+
+        cell.addEventListener('click', function(){
+            console.log(i);
+            cell.classList.add('clicked')
+        })
+
+        //appendo la cella alla griglia
+        grid.appendChild(cell);
+    }
+}
+
+//aggancio l'event listener
+playButton.addEventListener('click', play)
