@@ -18,5 +18,5 @@ for(let i = 0 ; i < numberOnClick.length ; i++){
 };
 
 function hello(){
-    console.log('ciao');
+    console.log(hello);
 };
